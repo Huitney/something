@@ -78,29 +78,35 @@ function onPointerDown (event) {
 			console.log(d);
 			var r = Math.random(), g = Math.random(), b = Math.random();
 			var cd = Math.floor(Math.random() * 4); // the different color
-			for(var i = 0;i < 4;i++){// the different color
-				if(i == cd){
-					if(r >= d)
-						colors[cd].changeColor( r-d, g, b );
-					else if(g >= d)
-						colors[cd].changeColor( r, g-d, b );
-					else if(b >= d)
-						colors[cd].changeColor( r, g, b-d );
-					else 
-						colors[cd].changeColor( r, g, b+d );
-					colors[cd].mesh.ans = true;
-				}
-				else{
+			for(var i = 0;i < 4;i++){
+				if(i != cd){
 					colors[i].changeColor( r, g, b );
 					colors[i].mesh.ans = false;
+					colors[i].redframe.visible = false;
 				}
 			}
+			
+			if(r >= d)                                 // the different color
+				colors[cd].changeColor( r-d, g, b );
+			else if(g >= d)
+				colors[cd].changeColor( r, g-d, b );
+			else if(b >= d)
+				colors[cd].changeColor( r, g, b-d );
+			else 
+				colors[cd].changeColor( r, g, b+d );
+			colors[cd].mesh.ans = true;
+			colors[cd].redframe.visible = false;
+			
 			d -= (0.002 * d);
 			s += 1;
 			document.getElementById("score").innerHTML = "Score = " + s.toString();
 		}
 		else{
-			document.getElementById("score").innerHTML = "Your final score = " + s.toString();
+			intersects[0].object.ans
+			i = 0;
+			while(colors[i].mesh.ans != true){ i++; }// show the answer
+			colors[i].redframe.visible = true;
+			document.getElementById("score").innerHTML = "Your final score = " + s.toString() + "<br>pick the answer to restart";
 			d = 0.2;
 			s = 0;
 		}
