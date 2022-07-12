@@ -20,6 +20,7 @@ export function init() {
 	scene = new THREE.Scene();
 	camera = new THREE.OrthographicCamera(-window.innerWidth/100, window.innerWidth/100, window.innerHeight/100, -window.innerHeight/100, -10, 50);
 	camera.position.z = 10;
+	//let controls = new OrbitControls(camera, renderer.domElement);
 
 	////////////////////////////////////////////////////////////
 	
@@ -108,7 +109,7 @@ function onPointerDown (event) {
 			colors[i].redframe.visible = true;
 			document.getElementById("score").innerHTML = "Your final score = " + s.toString() + "<br>pick the answer to restart";
 			d = 0.2;
-			s = 0;
+			s = -1;
 		}
 	}
 }
