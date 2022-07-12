@@ -8,8 +8,9 @@ export class CCube {
 		this.mesh.ans = false;
 		this.redframe = new THREE.Mesh( new THREE.RingGeometry( 4, 5, 4 ), new THREE.LineBasicMaterial({color: 'red'}));
 		this.redframe.visible = false;
+		this.redframe.z = 0.9;
 		
-		scene.add(this.mesh);
+		scene.add(this.mesh, this.redframe);
 		pickables.push(this.mesh);
 
 	}
