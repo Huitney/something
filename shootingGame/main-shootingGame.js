@@ -2,7 +2,7 @@ import * as THREE from "https://unpkg.com/three/build/three.module.js";
 import { OrbitControls } from "https://threejs.org/examples/jsm/controls/OrbitControls.js";
 import { explosion, buildSprite, readModel, setUpOffsetArray } from "./explo-shootingGame.js";
 import { gunPos, gunX, gunY } from "./explo-shootingGame.js";
-import { newBullet } from "./bullets-shootingGame.js";
+import { newBullet, shootingAnimate } from "./bullets-shootingGame.js";
 
 var camera, scene, renderer;
 var sceneHUD, cameraHUD;
@@ -60,6 +60,12 @@ export function init() {
 	//gun
 	gun = readModel('SS 55 Gun 3d modelsModelsSS 55 GUN');
 	
+	//bullet
+	var bulletGeometry = new THREE.SphereGeometry( 1, 32, 32 );
+	var bulletMaterial = new THREE.MeshBasicMaterial( {color: 0x000000} );
+	var bullet = new THREE.Mesh( bulletGeometry, bulletMaterial );
+	bullets.push(bullet);
+	
 	//explosion
 	var loader = new THREE.TextureLoader();
 	loader.crossOrigin = '';
@@ -86,7 +92,7 @@ export function init() {
 		}
 	);
 	
-	
+	shootingAnimate();
 }
 
 function onWindowResize() {
@@ -132,4 +138,4 @@ function keyboardEvent(event){
 
 
 
-export{scene, sceneHUD, bullets, camera};
+export{scene, sceneHUD, bullets, camera, gun};
