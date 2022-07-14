@@ -56,6 +56,7 @@ function onWindowResize() {
 }
 
 export function animate() {
+	onWindowResize();
 	requestAnimationFrame(animate);
 	render();
 }
